@@ -1,3 +1,181 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* StackIt Design System - Modern Q&A Platform 
+All colors MUST be HSL for consistency
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 99%;
+    --foreground: 220 13% 9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 9%;
+
+    /* Purple theme inspired by Stack Overflow but modern */
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 258 90% 60%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 9%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 13% 9%;
+
+    /* Q&A specific colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* StatKit branding */
+    --statkit-red: 8 79% 45%;
+    --statkit-red-foreground: 0 0% 100%;
+    --statkit-red-hover: 8 79% 40%;
+
+    /* Vote colors */
+    --vote-up: 142 76% 36%;
+    --vote-down: 0 84% 60%;
+    --vote-neutral: 220 9% 46%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 258 90% 66%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(258 90% 66%), hsl(258 90% 76%));
+    --gradient-hero: linear-gradient(135deg, hsl(258 90% 66%), hsl(220 90% 66%));
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px -2px hsl(220 13% 9% / 0.1);
+    --shadow-medium: 0 4px 16px -4px hsl(220 13% 9% / 0.15);
+    --shadow-strong: 0 8px 32px -8px hsl(220 13% 9% / 0.2);
+
+    /* Typography */
+    --font-heading: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 27% 8%;
+    --foreground: 220 14% 96%;
+
+    --card: 220 27% 10%;
+    --card-foreground: 220 14% 96%;
+
+    --popover: 220 27% 10%;
+    --popover-foreground: 220 14% 96%;
+
+    --primary: 258 90% 66%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 258 90% 70%;
+
+    --secondary: 220 27% 15%;
+    --secondary-foreground: 220 14% 96%;
+
+    --muted: 220 27% 15%;
+    --muted-foreground: 220 9% 65%;
+
+    --accent: 220 27% 15%;
+    --accent-foreground: 220 14% 96%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* StatKit branding */
+    --statkit-red: 8 79% 45%;
+    --statkit-red-foreground: 0 0% 100%;
+    --statkit-red-hover: 8 79% 50%;
+
+    --vote-up: 142 76% 40%;
+    --vote-down: 0 84% 65%;
+    --vote-neutral: 220 9% 65%;
+
+    --border: 220 27% 20%;
+    --input: 220 27% 20%;
+    --ring: 258 90% 66%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading font-semibold;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus styles */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-muted-foreground/30 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground/50;
+  }
+}
