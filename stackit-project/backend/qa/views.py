@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework import generics, viewsets, permissions
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
-from rest_framework.decorators import api_view, action
+from rest_framework.decorators import api_view, action, permission_classes
 from rest_framework.serializers import ModelSerializer
 from django.contrib.auth.models import User
 from .models import Question, Answer, Tag, Vote, Notification
@@ -37,6 +37,19 @@ class RegisterView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     serializer_class = RegisterSerializer
 
+
+# ----------------------------
+# 🔐 Get Current User
+# ----------------------------
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def get_current_user(request):
+    user = request.user
+    return Response({
+        'id': user.id,
+        'username': user.username,
+        'email': user.email,
+    })
 
 # ----------------------------
 # 📌 Question ViewSet
@@ -132,6 +145,7 @@ class NotificationViewSet(viewsets.ReadOnlyModelViewSet):
 # 📬 Unread Notification Count
 # ----------------------------
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def unread_notification_count(request):
     count = Notification.objects.filter(user=request.user, is_read=False).count()
     return Response({"unread_count": count})

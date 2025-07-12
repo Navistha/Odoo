@@ -7,6 +7,7 @@ from .views import (
     VoteViewSet,
     NotificationViewSet,
     RegisterView,
+    get_current_user,
     unread_notification_count,
 )
 
@@ -20,6 +21,7 @@ router.register(r'notifications', NotificationViewSet)
 urlpatterns = [
     # Auth
     path('auth/register/', RegisterView.as_view(), name='register'),
+    path('auth/user/', get_current_user, name='current_user'),
 
     # Notifications
     path('notifications/unread-count/', unread_notification_count),
